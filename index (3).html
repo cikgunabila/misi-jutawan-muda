@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="ms">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Misi Jutawan Muda — Matematik Tingkatan 3</title>
+<style>
+*{box-sizing:border-box}body{margin:0;padding:18px;background:#fff;color:#172554;font-family:Arial,sans-serif}.wrap{max-width:780px;margin:auto}.hero{background:#f1f5ff;border-radius:22px;padding:22px;text-align:center}.tag{display:inline-block;border-radius:20px;padding:7px 11px;margin:3px;background:#e0e7ff;color:#4338ca;font-size:12px;font-weight:700}.hero h1{color:#4338ca;font-size:clamp(26px,5vw,38px);margin:12px 0 5px}.hero h2{color:#0f766e;margin:0}.muted{color:#64748b;line-height:1.5}.stats{display:flex;justify-content:space-between;gap:10px;margin:20px 0 10px;font-weight:bold}.bar{height:10px;background:#e5e7eb;border-radius:20px;overflow:hidden}.fill{height:100%;width:5%;background:#6366f1;transition:width .2s}.level{display:inline-block;padding:7px 12px;border-radius:20px;font-size:12px;font-weight:bold;margin:15px 0 10px}.easy{background:#dcfce7;color:#166534}.medium{background:#fef3c7;color:#92400e}.hard{background:#fee2e2;color:#991b1b}.card{border:1px solid #dbe3ef;border-radius:18px;padding:20px;background:#f8fafc}.card h3{font-size:20px;line-height:1.45;margin:0 0 16px}.option{width:100%;display:flex;align-items:center;gap:12px;text-align:left;background:#fff;border:1.5px solid #cbd5e1;border-radius:13px;padding:13px;margin:9px 0;font-size:16px;cursor:pointer;color:#1e293b}.option.selected{border:2px solid #6366f1;background:#eef2ff}.option.correct{border:2px solid #16a34a;background:#dcfce7}.option.wrong{border:2px solid #dc2626;background:#fee2e2}.option:disabled{cursor:default}.letter{width:32px;height:32px;flex:none;display:grid;place-items:center;border-radius:9px;background:#e2e8f0;font-weight:bold}.btn{width:100%;border:0;border-radius:13px;padding:14px 18px;margin-top:14px;background:#4f46e5;color:white;font-size:16px;font-weight:bold;cursor:pointer}.btn:disabled{opacity:.4;cursor:not-allowed}.next{background:#059669}.feedback{padding:14px;border-radius:13px;margin-top:14px;line-height:1.5}.good{background:#dcfce7;border:1px solid #86efac}.bad{background:#fef2f2;border:1px solid #fecaca}.hidden{display:none!important}.result{text-align:center;background:#fff7ed;border-radius:18px;padding:24px;margin-top:20px}.score{font-size:48px;font-weight:bold;color:#4338ca;margin:10px}.resultbox{background:#fff;padding:14px;border-radius:12px;text-align:left;margin:15px 0}.resultbox div{display:flex;justify-content:space-between;padding:8px}footer{text-align:center;color:#94a3b8;font-size:12px;margin:20px}
+</style>
+</head>
+<body>
+<main class="wrap">
+<section class="hero">
+<span class="tag">MATEMATIK TINGKATAN 3</span><span class="tag">20 SOALAN</span>
+<h1>💰 MISI JUTAWAN MUDA</h1><h2>SIMPANAN &amp; PELABURAN</h2>
+<p class="muted">Cabaran bijak mengurus wang! Jawab semua soalan dan kumpul markah tertinggi.</p>
+<span class="tag">3.1.1 Jenis simpanan &amp; pelaburan</span><span class="tag">3.1.4 Risiko, pulangan &amp; kecairan</span>
+</section>
+<section id="game">
+<div class="stats"><span id="counter">SOALAN 1 / 20</span><span id="points">⭐ Markah: 0</span></div>
+<div class="bar"><div class="fill" id="progress"></div></div>
+<div><span class="level easy" id="level">MUDAH</span></div>
+<section class="card"><h3 id="question">Memuatkan soalan...</h3><div id="options"></div></section>
+<div id="feedback" aria-live="polite"></div>
+<button class="btn" id="check" type="button" disabled>SEMAK JAWAPAN ✓</button>
+<button class="btn next hidden" id="next" type="button">SOALAN SETERUSNYA →</button>
+</section>
+<section id="result" class="result hidden">
+<h1>🏆 MISI SELESAI!</h1><div class="score" id="finalscore">0 / 20</div><h2 id="remark"></h2>
+<p>Anda telah menyelesaikan kesemua 20 soalan.</p>
+<div class="resultbox"><div><span>Jawapan betul</span><b id="correctcount"></b></div><div><span>Jawapan salah</span><b id="wrongcount"></b></div><div><span>Peratus pencapaian</span><b id="percent"></b></div></div>
+<button class="btn" id="restart" type="button">↻ MAIN SEMULA</button>
+</section>
+<footer>Belajar Bijak • Simpan Bijak • Melabur Bijak</footer>
+</main>
+<script>
+(function(){
+'use strict';
+const qs = [
+["MUDAH","Antara berikut, yang manakah tujuan utama seseorang membuat simpanan?",["Untuk menghabiskan wang","Untuk kegunaan masa hadapan dan kecemasan","Untuk mengelakkan cukai","Untuk membeli barangan mewah"],1,"Simpanan membantu menyediakan wang untuk keperluan masa hadapan dan kecemasan."],
+["MUDAH","Antara berikut, yang manakah contoh simpanan di institusi kewangan?",["Akaun simpanan bank","Saham syarikat","Hartanah","Emas perhiasan"],0,"Akaun simpanan bank merupakan salah satu jenis simpanan."],
+["MUDAH","Apakah maksud pelaburan?",["Menyimpan wang tanpa sebarang tujuan","Menggunakan wang untuk mendapatkan pulangan pada masa hadapan","Meminjam wang daripada rakan","Membeli barang keperluan harian"],1,"Pelaburan melibatkan penggunaan modal dengan harapan memperoleh pulangan."],
+["MUDAH","Antara berikut, yang manakah merupakan contoh pelaburan?",["Wang tunai di dalam dompet","Akaun simpanan biasa","Saham syarikat","Wang belanja sekolah"],2,"Saham ialah instrumen pelaburan yang memberikan peluang memperoleh dividen atau keuntungan modal."],
+["MUDAH","Apakah yang dimaksudkan dengan kecairan (liquidity)?",["Tahap keuntungan pelaburan","Tahap risiko kehilangan wang","Keupayaan menukar aset kepada wang tunai dengan cepat","Jumlah wang yang disimpan"],2,"Kecairan ialah keupayaan sesuatu aset ditukar kepada wang tunai dengan cepat tanpa kehilangan nilai yang besar."],
+["SEDERHANA","Antara berikut, jenis simpanan manakah yang biasanya menawarkan kadar pulangan lebih tinggi berbanding akaun simpanan biasa?",["Wang di dalam tabung","Deposit tetap","Wang tunai","Akaun semasa"],1,"Deposit tetap lazimnya menawarkan kadar faedah atau keuntungan yang lebih tinggi, bergantung pada tempoh dan institusi."],
+["SEDERHANA","Apakah ciri utama akaun simpanan biasa?",["Wang sukar dikeluarkan","Risiko sangat tinggi","Wang boleh dikeluarkan dengan mudah","Pulangan sentiasa tinggi"],2,"Akaun simpanan biasa mempunyai kecairan yang tinggi kerana wang mudah dikeluarkan."],
+["SEDERHANA","Antara berikut, yang manakah mempunyai risiko pelaburan yang relatif tinggi?",["Akaun simpanan bank","Deposit tetap","Saham","Wang tunai"],2,"Harga saham boleh berubah-ubah mengikut keadaan pasaran dan prestasi syarikat."],
+["SEDERHANA","Apakah maksud risiko dalam pelaburan?",["Kemungkinan mengalami kerugian atau pulangan lebih rendah daripada jangkaan","Jumlah wang yang disimpan","Tempoh simpanan","Keuntungan yang dijamin"],0,"Risiko merujuk kepada kemungkinan kerugian atau ketidakpastian pulangan."],
+["SEDERHANA","Mengapakah deposit tetap mempunyai kecairan yang lebih rendah berbanding akaun simpanan biasa?",["Tidak boleh menyimpan wang","Wang biasanya perlu disimpan sehingga tempoh matang","Tidak mempunyai pulangan","Mempunyai risiko kehilangan semua wang setiap hari"],1,"Pengeluaran awal deposit tetap mungkin menyebabkan kehilangan sebahagian keuntungan atau tertakluk pada syarat tertentu."],
+["SEDERHANA","Antara berikut, yang manakah padanan yang paling tepat?",["Saham – risiko rendah dan pulangan dijamin","Deposit tetap – pulangan lebih stabil dan wang terikat mengikut tempoh","Wang tunai – pulangan tinggi","Akaun simpanan – risiko sangat tinggi"],1,"Deposit tetap menawarkan pulangan yang lebih boleh dijangka, tetapi kecairannya lebih rendah sepanjang tempoh simpanan."],
+["SEDERHANA","Seseorang melabur dalam hartanah. Apakah risiko yang mungkin dihadapinya?",["Harga hartanah sentiasa meningkat","Sukar menjual hartanah dengan segera pada harga yang dikehendaki","Tiada kos penyelenggaraan","Pulangan sentiasa dijamin"],1,"Hartanah mempunyai kecairan yang lebih rendah kerana proses jual beli mengambil masa."],
+["SEDERHANA","Apakah yang dimaksudkan dengan pulangan pelaburan?",["Jumlah wang yang dipinjam","Keuntungan atau hasil yang diperoleh daripada pelaburan","Jumlah perbelanjaan harian","Nilai wang yang disimpan sahaja"],1,"Pulangan ialah hasil atau keuntungan yang diperoleh daripada sesuatu pelaburan."],
+["MENCABAR","Ali mempunyai RM5,000. Dia mahu menyimpan wang untuk kecemasan yang boleh dikeluarkan pada bila-bila masa. Pilihan terbaik ialah...",["Membeli hartanah","Membeli saham","Akaun simpanan bank","Deposit tetap 5 tahun"],2,"Akaun simpanan bank lebih sesuai kerana mempunyai kecairan yang tinggi."],
+["MENCABAR","Siti memilih pelaburan yang berpotensi memberikan pulangan tinggi tetapi sanggup menerima risiko kerugian. Pelaburan manakah paling sesuai dengan ciri ini?",["Saham","Akaun simpanan biasa","Wang tunai","Deposit tetap jangka pendek"],0,"Saham berpotensi memberikan pulangan tinggi tetapi mempunyai risiko turun naik harga."],
+["MENCABAR","Pelaburan A menawarkan pulangan tinggi tetapi risiko tinggi. Pelaburan B menawarkan pulangan sederhana dengan risiko rendah. Apakah kesimpulan yang tepat?",["Pulangan tinggi sentiasa menjamin keuntungan","Risiko dan pulangan mempunyai hubungan yang perlu dipertimbangkan","Pelaburan B tiada pulangan","Pelaburan A pasti lebih baik"],1,"Secara umum, potensi pulangan yang lebih tinggi biasanya disertai risiko yang lebih tinggi."],
+["MENCABAR","Simpanan X menawarkan pulangan 2% dan boleh dikeluarkan bila-bila masa. Simpanan Y menawarkan pulangan 3.5% tetapi wang terikat selama setahun. Apakah perbezaan utama?",["X lebih cair berbanding Y","Y lebih cair berbanding X","X mempunyai risiko paling tinggi","Y tidak memberikan pulangan"],0,"Simpanan X lebih mudah dikeluarkan. Simpanan Y mempunyai tempoh matang."],
+["MENCABAR","Ravi mempunyai RM10,000. Dia membahagikan wang kepada akaun simpanan, deposit tetap dan saham. Apakah strategi ini?",["Menghapuskan semua risiko","Kepelbagaian pelaburan","Mengelakkan simpanan","Menggunakan wang secara boros"],1,"Kepelbagaian pelaburan membantu mengurangkan kebergantungan kepada satu jenis instrumen."],
+["MENCABAR","Mira memerlukan wang dalam masa dua minggu untuk membayar yuran pengajian. Antara pilihan berikut, yang manakah paling tidak sesuai?",["Akaun simpanan","Wang tunai","Deposit tetap yang matang dalam masa enam bulan","Akaun yang membolehkan pengeluaran segera"],2,"Deposit tetap yang belum matang kurang sesuai kerana wang mungkin tidak dapat dikeluarkan dengan mudah."],
+["MENCABAR","Seorang pelabur mahukan pulangan yang tinggi, risiko yang rendah dan kecairan yang tinggi pada masa yang sama. Apakah nasihat paling tepat?",["Semua pelaburan boleh memenuhi ketiga-tiga ciri","Pilih saham sahaja","Tiada pelaburan yang menjamin ketiga-tiga ciri; perlu membuat pertimbangan dan menetapkan keutamaan","Simpan semua wang di rumah"],2,"Setiap instrumen mempunyai ciri risiko, pulangan dan kecairan yang berbeza. Pelabur perlu memilih berdasarkan matlamat kewangan."]
+];
+let index=0,score=0,selected=null,answered=false;
+const el=id=>document.getElementById(id);
+function render(){
+ const q=qs[index];
+ el("counter").textContent="SOALAN "+(index+1)+" / "+qs.length;
+ el("points").textContent="⭐ Markah: "+score;
+ el("progress").style.width=((index+1)/qs.length*100)+"%";
+ el("level").textContent=q[0];
+ el("level").className="level "+(index<5?"easy":index<13?"medium":"hard");
+ el("question").textContent=q[1];
+ el("options").replaceChildren();
+ el("feedback").replaceChildren();
+ selected=null;answered=false;
+ el("check").classList.remove("hidden");el("check").disabled=true;
+ el("next").classList.add("hidden");
+ q[2].forEach((answer,n)=>{
+  const button=document.createElement("button");
+  button.type="button";button.className="option";
+  const letter=document.createElement("span");letter.className="letter";letter.textContent="ABCD"[n];
+  const label=document.createElement("span");label.textContent=answer;
+  button.append(letter,label);
+  button.addEventListener("click",()=>{
+   if(answered)return;
+   selected=n;
+   document.querySelectorAll(".option").forEach(b=>b.classList.remove("selected"));
+   button.classList.add("selected");el("check").disabled=false;
+  });
+  el("options").append(button);
+ });
+}
+el("check").addEventListener("click",()=>{
+ if(selected===null||answered)return;
+ answered=true;const q=qs[index],buttons=[...document.querySelectorAll(".option")],correct=selected===q[3];
+ buttons.forEach((b,n)=>{b.disabled=true;if(n===q[3])b.classList.add("correct");if(n===selected&&!correct)b.classList.add("wrong");});
+ if(correct)score++;
+ el("points").textContent="⭐ Markah: "+score;
+ const box=document.createElement("div");box.className="feedback "+(correct?"good":"bad");
+ const strong=document.createElement("strong");strong.textContent=correct?"🎉 TAHNIAH! JAWAPAN BETUL!":"💡 JANGAN PUTUS ASA!";
+ const explanation=document.createElement("div");explanation.textContent=q[4];box.append(strong,explanation);el("feedback").append(box);
+ el("check").classList.add("hidden");el("next").classList.remove("hidden");
+ el("next").textContent=index===qs.length-1?"LIHAT KEPUTUSAN AKHIR 🏆":"SOALAN SETERUSNYA →";
+});
+el("next").addEventListener("click",()=>{
+ if(index<qs.length-1){index++;render();return;}
+ el("game").classList.add("hidden");el("result").classList.remove("hidden");
+ el("finalscore").textContent=score+" / "+qs.length;
+ el("correctcount").textContent=score;el("wrongcount").textContent=qs.length-score;
+ el("percent").textContent=(score/qs.length*100)+"%";
+ el("remark").textContent=score>=18?"PAKAR JUTAWAN MUDA! 🌟":score>=15?"CEMERLANG! 🎉":score>=10?"USAHA YANG BAIK! 👏":"TERUS BERLATIH! 💪";
+});
+el("restart").addEventListener("click",()=>{index=0;score=0;el("result").classList.add("hidden");el("game").classList.remove("hidden");render();});
+render();
+})();
+</script>
+</body></html>
